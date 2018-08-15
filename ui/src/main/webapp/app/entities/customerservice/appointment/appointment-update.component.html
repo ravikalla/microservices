@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-appointment-heading">Create or edit a Appointment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!appointment.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="appointment.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_visitorname">Visitorname</label>
+                    <input type="text" class="form-control" name="visitorname" id="field_visitorname"
+                        [(ngModel)]="appointment.visitorname" required/>
+                    <div [hidden]="!(editForm.controls.visitorname?.dirty && editForm.controls.visitorname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.visitorname?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_time">Time</label>
+                    <div class="d-flex">
+                        <input id="field_time" type="datetime-local" class="form-control" name="time" [(ngModel)]="time"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.time?.dirty && editForm.controls.time?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.time?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.time?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_comments">Comments</label>
+                    <input type="text" class="form-control" name="comments" id="field_comments"
+                        [(ngModel)]="appointment.comments" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "savingsaccount",
+            "otherEntityName": "savingsaccount",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "accountnumber"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "-100000000000",
+            "fieldValidateRulesMax": "100000000000"
+        },
+        {
+            "fieldName": "transactiondate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180814171714",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "jhi_transaction",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination",
+    "microserviceName": "savingsaccount"
+}
